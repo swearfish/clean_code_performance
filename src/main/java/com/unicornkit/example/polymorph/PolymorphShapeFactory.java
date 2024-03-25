@@ -1,9 +1,9 @@
-package com.unicornkit.example.cleancode;
+package com.unicornkit.example.polymorph;
 
 import com.unicornkit.example.Shape;
 import com.unicornkit.example.ShapeFactory;
 
-public class CleanCodeShapeFactory implements ShapeFactory {
+public class PolymorphShapeFactory implements ShapeFactory {
     @Override
     public Shape createRectangle(double width, double height) {
         return new Rectangle(width, height);

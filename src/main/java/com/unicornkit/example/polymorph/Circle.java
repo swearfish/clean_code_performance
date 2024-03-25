@@ -1,4 +1,4 @@
-package com.unicornkit.example.cleancode;
+package com.unicornkit.example.polymorph;
 
 class Circle extends AbstractShape {
     private double radius;

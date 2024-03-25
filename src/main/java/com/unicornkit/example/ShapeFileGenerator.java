@@ -10,7 +10,7 @@ public final class ShapeFileGenerator {
 
     public static void main(String[] args) {
         try {
-            generate(Paths.get("main", "resources", "shapes.txt"),
+            generate(Paths.get("jmh", "resources", "shapes.txt"),
                     10000,
                     50);
         } catch (IOException e) {

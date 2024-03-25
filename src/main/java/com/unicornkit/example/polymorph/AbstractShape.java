@@ -1,4 +1,4 @@
-package com.unicornkit.example.cleancode;
+package com.unicornkit.example.polymorph;
 
 import com.unicornkit.example.Shape;
 
