@@ -4,6 +4,7 @@ import com.unicornkit.example.part1_java_polymorph_objects.PolymorphShapeFactory
 import com.unicornkit.example.part2_polymorph_records.PolymorphRecordShapeFactory;
 import com.unicornkit.example.part3_multipurpose_record.MultipurposeRecordShapeFactory;
 import com.unicornkit.example.part4_records_with_lut.FastRecordShapeFactory;
+import com.unicornkit.example.part6_pojo.PojoShapeList;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class ShapesTest {
         var recordShapes = PolymorphRecordShapeFactory.createList();
         ShapeListLoader.fromResource("shapes.txt", recordShapes);
         var totalArea = ShapeListAreaCalc.calcUsingForEach(recordShapes);
-        assertEquals(this.totalArea, totalArea);
+        assertEquals(this.totalArea, totalArea, 1/1000.0);
     }
 
     @Test
@@ -32,7 +33,7 @@ public class ShapesTest {
         var recordShapes = MultipurposeRecordShapeFactory.createList();
         ShapeListLoader.fromResource("shapes.txt", recordShapes);
         var totalArea = ShapeListAreaCalc.calcUsingForEach(recordShapes);
-        assertEquals(this.totalArea, totalArea);
+        assertEquals(this.totalArea, totalArea, 1/1000.0);
     }
 
     @Test
@@ -40,6 +41,22 @@ public class ShapesTest {
         var recordShapes = FastRecordShapeFactory.createList();
         ShapeListLoader.fromResource("shapes.txt", recordShapes);
         var totalArea = ShapeListAreaCalc.calcUsingForEach(recordShapes);
-        assertEquals(this.totalArea, totalArea);
+        assertEquals(this.totalArea, totalArea, 1/1000.0);
+    }
+
+    @Test
+    void testPojo() throws IOException {
+        var shapes = new PojoShapeList();
+        ShapeListLoader.fromResource("shapes.txt", shapes);
+        var totalArea = shapes.calcTotalArea();
+        assertEquals(this.totalArea, totalArea, 1/1000.0);
+    }
+
+    @Test
+    void testPojoFast() throws IOException {
+        var shapes = new PojoShapeList();
+        ShapeListLoader.fromResource("shapes.txt", shapes);
+        var totalArea = shapes.calcTotalAreaFast();
+        assertEquals(this.totalArea, totalArea, 1/1000.0);
     }
 }

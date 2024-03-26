@@ -5,6 +5,7 @@ import com.unicornkit.example.ShapeFactory;
 import com.unicornkit.example.ShapeList;
 
 public class PolymorphRecordShapeFactory implements ShapeFactory {
+
     @Override
     public Shape createRectangle(double width, double height) {
         return new Rectangle(width, height);
@@ -18,6 +19,11 @@ public class PolymorphRecordShapeFactory implements ShapeFactory {
     @Override
     public Shape createCircle(double radius) {
         return new Circle(radius);
+    }
+
+    @Override
+    public Shape createTriangle(double base, double height) {
+        return new Triangle(base, height);
     }
 
     public static ShapeList createList() {

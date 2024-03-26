@@ -5,6 +5,7 @@ import com.unicornkit.example.ShapeFactory;
 import com.unicornkit.example.ShapeList;
 
 public class FastRecordShapeFactory implements ShapeFactory {
+
     @Override
     public Shape createRectangle(double width, double height) {
         return ShapeData.rectangle(width, height);
@@ -18,6 +19,11 @@ public class FastRecordShapeFactory implements ShapeFactory {
     @Override
     public Shape createCircle(double radius) {
         return ShapeData.circle(radius);
+    }
+
+    @Override
+    public Shape createTriangle(double base, double height) {
+        return ShapeData.triangle(base, height);
     }
 
     public static ShapeList createList() {

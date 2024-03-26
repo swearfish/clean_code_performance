@@ -6,7 +6,8 @@ final class ShapeData implements Shape {
 
     private enum Type {
         RECTANGLE,
-        CIRCLE
+        CIRCLE,
+        TRIANGLE,
     }
 
     private final double width;
@@ -33,11 +34,16 @@ final class ShapeData implements Shape {
         return new ShapeData(radius, 1.0, Type.CIRCLE);
     }
 
+    public static ShapeData triangle(double base, double height) {
+        return new ShapeData(base, height, Type.TRIANGLE);
+    }
+
     @Override
     public double calculateArea() {
         return switch (type) {
             case RECTANGLE -> width * height;
             case CIRCLE -> width * width * Math.PI;
+            case TRIANGLE -> width * height * 0.5;
         };
     }
 }

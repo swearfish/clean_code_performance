@@ -20,6 +20,11 @@ public class PojoShapeFactory implements ShapeFactory {
         return ShapeObject.circle(radius);
     }
 
+    @Override
+    public Shape createTriangle(double base, double height) {
+        return ShapeObject.triangle(base, height);
+    }
+
     public static ShapeList createList() {
         return new ShapeList(new PojoShapeFactory());
     }

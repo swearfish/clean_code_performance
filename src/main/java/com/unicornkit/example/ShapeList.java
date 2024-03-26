@@ -30,6 +30,11 @@ public final class ShapeList implements Iterable<Shape>, ShapeListBuilder {
     }
 
     @Override
+    public void addTriangle(double base, double height) {
+        shapes.add(factory.createTriangle(base, height));
+    }
+
+    @Override
     public Iterator<Shape> iterator() {
         return shapes.iterator();
     }

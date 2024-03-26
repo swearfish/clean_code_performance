@@ -17,25 +17,33 @@ public class DataOrientedShapes implements ShapeListBuilder {
         buffer = newBuffer;
     }
 
-    private void shape(double width, double height, double widthCoeff) {
+    private void shape(double width, double height, double coeff) {
         resize(3 * (count + 1));
         var offset = count * 3;
         count += 1;
         buffer[offset] = width;
         buffer[offset + 1] = height;
-        buffer[offset + 2] = widthCoeff;
+        buffer[offset + 2] = coeff;
     }
 
+    @Override
     public void addRectangle(double width, double height) {
         shape(width, height, 1.0);
     }
 
+    @Override
     public void addSquare(double size) {
         shape(size, size, 1.0);
     }
 
+    @Override
     public void addCircle(double radius) {
-        shape(radius, radius, 2 * Math.PI);
+        shape(radius, radius, Math.PI);
+    }
+
+    @Override
+    public void addTriangle(double base, double height) {
+        shape(base, height, 0.5);
     }
 
     public double calcTotalArea() {

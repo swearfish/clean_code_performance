@@ -23,4 +23,9 @@ public class PolymorphShapeFactory implements ShapeFactory {
     public Shape createCircle(double radius) {
         return new Circle(radius);
     }
+
+    @Override
+    public Shape createTriangle(double base, double height) {
+        return new Triangle(base, height);
+    }
 }

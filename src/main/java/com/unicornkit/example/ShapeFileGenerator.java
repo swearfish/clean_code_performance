@@ -10,7 +10,7 @@ public final class ShapeFileGenerator {
 
     public static void main(String[] args) {
         try {
-            generate(Paths.get("jmh", "resources", "shapes.txt"),
+            generate(Paths.get("src", "jmh", "resources", "shapes.txt"),
                     10000,
                     50);
         } catch (IOException e) {
@@ -28,13 +28,14 @@ public final class ShapeFileGenerator {
         var sb = new StringBuilder();
 
         for (int i = 0; i < count; i++) {
-            var shapeType = rnd.nextInt(3);
+            var shapeType = rnd.nextInt(4);
             var w = 1 + rnd.nextInt(maxSize);
             var h = 1 + rnd.nextInt(maxSize);
             switch (shapeType) {
                 case 0 -> sb.append("S ").append(w).append("\n");
                 case 1 -> sb.append("C ").append(w).append("\n");
                 case 2 -> sb.append("R ").append(w).append(" ").append(h).append("\n");
+                case 3 -> sb.append("T ").append(w).append(" ").append(h).append("\n");
             }
         }
 

@@ -8,7 +8,9 @@ final class ShapeData implements Shape {
 
     private static final int CIRCLE = 1;
 
-    private static final double[] coeff = {1.0, 2 * Math.PI};
+    private static final int TRIANGLE = 2;
+
+    private static final double[] coeff = {1.0, Math.PI, 0.5f};
 
     private final double width;
 
@@ -26,12 +28,16 @@ final class ShapeData implements Shape {
         return new ShapeData(width, height, RECTANGLE);
     }
 
-    public static ShapeData square(double width) {
-        return rectangle(width, width);
+    public static ShapeData square(double size) {
+        return rectangle(size, size);
     }
 
     public static ShapeData circle(double radius) {
         return new ShapeData(radius, radius, CIRCLE);
+    }
+
+    public static ShapeData triangle(double base, double height) {
+        return new ShapeData(base, height, TRIANGLE);
     }
 
     @Override

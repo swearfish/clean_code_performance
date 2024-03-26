@@ -14,9 +14,10 @@ class DataOrientedShapesTest {
     private final double totalArea;
 
     private final DataOrientedShapes dataOrientedShapes = new DataOrientedShapes();
+    private final ShapeList polyShapes;
 
     DataOrientedShapesTest() throws IOException {
-        var polyShapes = PolymorphShapeFactory.createList();
+        polyShapes = PolymorphShapeFactory.createList();
         ShapeListLoader.fromResource("shapes.txt", polyShapes);
         totalArea = ShapeListAreaCalc.calcUsingForLoop(polyShapes);
         ShapeListLoader.fromResource("shapes.txt", dataOrientedShapes);

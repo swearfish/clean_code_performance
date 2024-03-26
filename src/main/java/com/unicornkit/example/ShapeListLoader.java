@@ -37,6 +37,11 @@ public final class ShapeListLoader {
 
     private static void parse(String[] parts, ShapeListBuilder list) throws IllegalArgumentException {
         switch (parts[0]) {
+            case "T" -> {
+                double base = Double.parseDouble(parts[1]);
+                double height = Double.parseDouble(parts[2]);
+                list.addTriangle(base, height);
+            }
             case "R" -> {
                 double width = Double.parseDouble(parts[1]);
                 double height = Double.parseDouble(parts[2]);

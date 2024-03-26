@@ -7,4 +7,6 @@ public interface ShapeListBuilder {
     void addSquare(double size);
 
     void addCircle(double radius);
+
+    void addTriangle(double base, double height);
 }

@@ -118,7 +118,15 @@ public class ShapeBenchmark {
     @Fork(value = 1, warmups = 0)
     @Warmup(iterations = 2)
     @Measurement(iterations = 2)
-    public void part6_pojo() {
+    public void part6a_pojo() {
         var totalArea = pojoShapes.calcTotalArea();
+    }
+
+    @Benchmark
+    @Fork(value = 1, warmups = 0)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 2)
+    public void part6b_pojo_ctab() {
+        var totalArea = pojoShapes.calcTotalAreaFast();
     }
 }

@@ -23,14 +23,29 @@ public final class PojoShapeList implements ShapeListBuilder {
         shapes.add(ShapeObject.circle(radius));
     }
 
+    @Override
+    public void addTriangle(double base, double height) {
+        shapes.add(ShapeObject.triangle(base, height));
+    }
+
     public double calcTotalArea() {
         final double[] result = {0};
         shapes.forEach(s -> {
             if (s.type == ShapeObject.CIRCLE) {
-                result[0] += s.width * 2 * Math.PI;
+                result[0] += s.width * s.width * Math.PI;
+            } else if (s.type == ShapeObject.TRIANGLE) {
+                result[0] += s.width * s.height * 0.5;
             } else {
                 result[0] += s.width * s.height;
             }
+        });
+        return result[0];
+    }
+
+    public double calcTotalAreaFast() {
+        final double[] result = {0};
+        shapes.forEach(s -> {
+            result[0] += s.width * s.height * ShapeObject.coeff[s.type];
         });
         return result[0];
     }

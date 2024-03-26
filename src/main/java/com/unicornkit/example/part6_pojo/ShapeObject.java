@@ -8,6 +8,10 @@ final class ShapeObject implements Shape {
 
     public static final int CIRCLE = 1;
 
+    public static final int TRIANGLE = 2;
+
+    static final double coeff[] = {1.0, Math.PI, 0.5};
+
     final double width;
 
     final double height;
@@ -29,7 +33,11 @@ final class ShapeObject implements Shape {
     }
 
     public static ShapeObject circle(double radius) {
-        return new ShapeObject(radius, 1.0, CIRCLE);
+        return new ShapeObject(radius, radius, CIRCLE);
+    }
+
+    public static ShapeObject triangle(double base, double height) {
+        return new ShapeObject(base, height, TRIANGLE);
     }
 
     @Override
