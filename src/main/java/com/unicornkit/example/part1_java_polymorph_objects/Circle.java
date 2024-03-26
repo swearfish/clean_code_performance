@@ -1,4 +1,4 @@
-package com.unicornkit.example.polymorph;
+package com.unicornkit.example.part1_java_polymorph_objects;
 
 class Circle extends AbstractShape {
     private double radius;
@@ -13,6 +13,6 @@ class Circle extends AbstractShape {
 
     @Override
     public double calculateArea() {
-        return getRadius() * 2 * Math.PI;
+        return getRadius() * getRadius() * Math.PI;
     }
 }

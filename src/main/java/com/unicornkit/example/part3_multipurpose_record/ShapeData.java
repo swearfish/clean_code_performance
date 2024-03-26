@@ -1,4 +1,4 @@
-package com.unicornkit.example.records;
+package com.unicornkit.example.part3_multipurpose_record;
 
 import com.unicornkit.example.Shape;
 
@@ -37,7 +37,7 @@ final class ShapeData implements Shape {
     public double calculateArea() {
         return switch (type) {
             case RECTANGLE -> width * height;
-            case CIRCLE -> width * 2 * Math.PI;
+            case CIRCLE -> width * width * Math.PI;
         };
     }
 }

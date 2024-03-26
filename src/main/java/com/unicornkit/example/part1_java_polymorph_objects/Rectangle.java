@@ -1,8 +1,8 @@
-package com.unicornkit.example.polymorph;
+package com.unicornkit.example.part1_java_polymorph_objects;
 
 class Rectangle extends AbstractShape {
-    private double width;
-    private double height;
+    protected double width;
+    protected double height;
 
     public Rectangle(double width, double height) {
         this.width = width;
@@ -15,6 +15,14 @@ class Rectangle extends AbstractShape {
 
     public double getHeight() {
         return height;
+    }
+
+    public void setWidth(double value) {
+        width = value;
+    }
+
+    public void setHeight(double value) {
+        height = value;
     }
 
     @Override

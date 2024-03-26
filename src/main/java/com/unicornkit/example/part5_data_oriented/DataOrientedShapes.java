@@ -1,11 +1,8 @@
-package com.unicornkit.example.data_oriented;
+package com.unicornkit.example.part5_data_oriented;
 
-import com.unicornkit.example.Shape;
-import com.unicornkit.example.ShapeFactory;
+import com.unicornkit.example.ShapeListBuilder;
 
-import java.util.List;
-
-public class DataOrientedShapes {
+public class DataOrientedShapes implements ShapeListBuilder {
 
     private double[] buffer = null;
     private int count = 0;
@@ -38,7 +35,7 @@ public class DataOrientedShapes {
     }
 
     public void addCircle(double radius) {
-        shape(radius, 1.0, 2 * Math.PI);
+        shape(radius, radius, 2 * Math.PI);
     }
 
     public double calcTotalArea() {
@@ -79,30 +76,5 @@ public class DataOrientedShapes {
             countMod4--;
         }
         return result;
-    }
-
-    public ShapeFactory createFactory() {
-        return new Factory();
-    }
-
-    private final class Factory implements ShapeFactory {
-
-        @Override
-        public Shape createRectangle(double width, double height) {
-            addRectangle(width, height);
-            return null;
-        }
-
-        @Override
-        public Shape createSquare(double size) {
-            addSquare(size);
-            return null;
-        }
-
-        @Override
-        public Shape createCircle(double radius) {
-            addCircle(radius);
-            return null;
-        }
     }
 }

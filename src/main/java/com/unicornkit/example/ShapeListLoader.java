@@ -3,58 +3,52 @@ package com.unicornkit.example;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-public final class ShapeListFactory {
+public final class ShapeListLoader {
 
-    private ShapeListFactory() {}
+    private ShapeListLoader() {}
 
-    public static List<Shape> fromFile(String filename, ShapeFactory factory)
+    public static void fromFile(String filename, ShapeListBuilder list)
             throws IOException {
         try (var br = new BufferedReader(new FileReader(filename))) {
-            return fromReader(br, factory);
+            fromReader(br, list);
         }
     }
 
-    public static List<Shape> fromResource(String resourceName, ShapeFactory factory)
+    public static void fromResource(String resourceName, ShapeListBuilder list)
             throws IOException {
         try (var br = Utility.openResource(resourceName)) {
-            return fromReader(br, factory);
+            fromReader(br, list);
         }
     }
 
-    public static List<Shape> fromReader(BufferedReader br, ShapeFactory factory)
+    public static void fromReader(BufferedReader br, ShapeListBuilder list)
             throws IOException {
-        var shapeList = new ArrayList<Shape>();
         String line;
         while ((line = br.readLine()) != null) {
-            var shape = parse(line, factory);
-            shapeList.add(shape);
+            parse(line, list);
         }
-
-        return shapeList;
     }
 
-    private static Shape parse(String line, ShapeFactory factory) throws IllegalArgumentException {
+    private static void parse(String line, ShapeListBuilder list) throws IllegalArgumentException {
         String[] parts = line.split("\\s+");
-        return parse(parts, factory);
+        parse(parts, list);
     }
 
-    private static Shape parse(String[] parts, ShapeFactory factory) throws IllegalArgumentException {
+    private static void parse(String[] parts, ShapeListBuilder list) throws IllegalArgumentException {
         switch (parts[0]) {
             case "R" -> {
                 double width = Double.parseDouble(parts[1]);
                 double height = Double.parseDouble(parts[2]);
-                return factory.createRectangle(width, height);
+                list.addRectangle(width, height);
             }
             case "C" -> {
                 double radius = Double.parseDouble(parts[1]);
-                return factory.createCircle(radius);
+                list.addCircle(radius);
             }
             case "S" -> {
                 double size = Double.parseDouble(parts[1]);
-                return factory.createSquare(size);
+                list.addSquare(size);
             }
             default -> throw new IllegalArgumentException("Unknown shape type: " + parts[0]);
         }

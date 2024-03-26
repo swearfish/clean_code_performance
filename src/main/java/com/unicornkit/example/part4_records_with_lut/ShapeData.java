@@ -1,4 +1,4 @@
-package com.unicornkit.example.fast_records;
+package com.unicornkit.example.part4_records_with_lut;
 
 import com.unicornkit.example.Shape;
 
@@ -8,7 +8,7 @@ final class ShapeData implements Shape {
 
     private static final int CIRCLE = 1;
 
-    private static final double[] widthCoeff = {1.0, 2 * Math.PI};
+    private static final double[] coeff = {1.0, 2 * Math.PI};
 
     private final double width;
 
@@ -31,11 +31,11 @@ final class ShapeData implements Shape {
     }
 
     public static ShapeData circle(double radius) {
-        return new ShapeData(radius, 1.0, CIRCLE);
+        return new ShapeData(radius, radius, CIRCLE);
     }
 
     @Override
     public double calculateArea() {
-        return width * widthCoeff[type] * height;
+        return width * coeff[type] * height;
     }
 }

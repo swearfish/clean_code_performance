@@ -1,9 +1,10 @@
-package com.unicornkit.example.records;
+package com.unicornkit.example.part4_records_with_lut;
 
 import com.unicornkit.example.Shape;
 import com.unicornkit.example.ShapeFactory;
+import com.unicornkit.example.ShapeList;
 
-public class RecordShapeFactory implements ShapeFactory {
+public class FastRecordShapeFactory implements ShapeFactory {
     @Override
     public Shape createRectangle(double width, double height) {
         return ShapeData.rectangle(width, height);
@@ -17,5 +18,9 @@ public class RecordShapeFactory implements ShapeFactory {
     @Override
     public Shape createCircle(double radius) {
         return ShapeData.circle(radius);
+    }
+
+    public static ShapeList createList() {
+        return new ShapeList(new FastRecordShapeFactory());
     }
 }
