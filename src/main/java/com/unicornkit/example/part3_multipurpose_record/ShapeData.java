@@ -2,7 +2,7 @@ package com.unicornkit.example.part3_multipurpose_record;
 
 import com.unicornkit.example.Shape;
 
-final class ShapeData implements Shape {
+public final class ShapeData implements Shape {
 
     private enum Type {
         RECTANGLE,

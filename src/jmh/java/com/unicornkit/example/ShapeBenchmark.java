@@ -70,15 +70,15 @@ public class ShapeBenchmark {
     @Fork(value = 1, warmups = 0)
     @Warmup(iterations = 2)
     @Measurement(iterations = 2)
-    public void part1d_polymorph_shapes_for() {
-        ShapeListAreaCalc.calcUsingForLoop(polyShapes);
+    public void part1d_polymorph_shapes_for_it() {
+        ShapeListAreaCalc.calcUsingForEachLoop(polyShapes);
     }
 
     @Benchmark
     @Fork(value = 1, warmups = 0)
     @Warmup(iterations = 2)
     @Measurement(iterations = 2)
-    public void part2_polymorph_records() {
+    public void part2_polymorph_records_for_each() {
         var totalArea = ShapeListAreaCalc.calcUsingForEach(records);
     }
 
@@ -86,7 +86,23 @@ public class ShapeBenchmark {
     @Fork(value = 1, warmups = 0)
     @Warmup(iterations = 2)
     @Measurement(iterations = 2)
+    public void part2b_polymorph_records_for() {
+        var totalArea = ShapeListAreaCalc.calcUsingForEachLoop(records);
+    }
+
+    @Benchmark
+    @Fork(value = 1, warmups = 0)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 2)
     public void part3_multipurpose_records() {
+        var totalArea = ShapeListAreaCalc.calcUsingForEach(multipurposeRecords);
+    }
+
+    @Benchmark
+    @Fork(value = 1, warmups = 0)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 2)
+    public void part3_multipurpose_records_no_intf() {
         var totalArea = ShapeListAreaCalc.calcUsingForEach(multipurposeRecords);
     }
 

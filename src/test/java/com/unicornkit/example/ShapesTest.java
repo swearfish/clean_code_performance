@@ -17,7 +17,7 @@ public class ShapesTest {
     ShapesTest() throws IOException {
         var polyShapes = PolymorphShapeFactory.createList();
         ShapeListLoader.fromResource("shapes.txt", polyShapes);
-        totalArea = ShapeListAreaCalc.calcUsingForLoop(polyShapes);
+        totalArea = ShapeListAreaCalc.calcUsingForEachLoop(polyShapes);
     }
 
     @Test

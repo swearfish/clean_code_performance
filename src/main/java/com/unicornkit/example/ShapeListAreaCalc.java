@@ -1,5 +1,7 @@
 package com.unicornkit.example;
 
+import com.unicornkit.example.part3_multipurpose_record.ShapeData;
+
 import java.util.stream.StreamSupport;
 
 public final class ShapeListAreaCalc {
@@ -18,7 +20,15 @@ public final class ShapeListAreaCalc {
         return ref.result;
     }
 
-    public static double calcUsingForLoop(Iterable<Shape> shapes) {
+    public static double calcUsingForEach_ShapeData(Iterable<ShapeData> shapes) {
+        var ref = new Object() {
+            double result = 0;
+        };
+        shapes.forEach(s -> ref.result += s.calculateArea());
+        return ref.result;
+    }
+
+    public static double calcUsingForEachLoop(Iterable<Shape> shapes) {
         double result = 0;
         for (var shape: shapes) {
             result += shape.calculateArea();

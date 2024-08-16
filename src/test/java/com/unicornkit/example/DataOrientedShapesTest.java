@@ -1,7 +1,6 @@
 package com.unicornkit.example;
 
 import com.unicornkit.example.part1_java_polymorph_objects.PolymorphShapeFactory;
-import com.unicornkit.example.part2_polymorph_records.PolymorphRecordShapeFactory;
 import com.unicornkit.example.part5_data_oriented.DataOrientedShapes;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ class DataOrientedShapesTest {
     DataOrientedShapesTest() throws IOException {
         polyShapes = PolymorphShapeFactory.createList();
         ShapeListLoader.fromResource("shapes.txt", polyShapes);
-        totalArea = ShapeListAreaCalc.calcUsingForLoop(polyShapes);
+        totalArea = ShapeListAreaCalc.calcUsingForEachLoop(polyShapes);
         ShapeListLoader.fromResource("shapes.txt", dataOrientedShapes);
     }
 
