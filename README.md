@@ -34,13 +34,6 @@ The problem solved in this code is the classic OOP example for polymorphism:
 4. We have a huge list of shapes and we want to calculate the total area of all shapes
 5. We want to do it in the most efficient way
 
-## The "tech stack"
-
-I've chosen Java for several reasons:
-- At IP Camp, we are implementing a performance critical trace file dissection tool in Java
-- I'm familiar with Java
-- Java is a good language to demonstrate the problem as it was referenced in the Clean Code book and a great language for object oriented programming
-- As you will see, it will become tricky to achieve the best performance in the end
 
 ## The Clean Code rules
 
@@ -103,9 +96,17 @@ For example, a ShapeCalculator should depend on a Shape interface rather than co
 
 All the tests were ran on a MacBook Pro M2 Max with 32GB of RAM.
 
-## The implementations
+## The Java version
 
-### Part 1: The Clean Code implementation
+I've chosen Java for several reasons:
+- At IP Camp, we are implementing a performance critical trace file dissection tool in Java
+- I'm familiar with Java
+- Java is a good language to demonstrate the problem as it was referenced in the Clean Code book and a great language for object oriented programming
+- As you will see, it will become tricky to achieve the best performance in the end
+
+### The implementations
+
+#### Part 1: The Clean Code implementation
 
 The part 1 implements the clean code rules and follows SOLID principles.
 However, it does not embrace all Java "best practices" for performance, e.g.:
@@ -140,7 +141,7 @@ ShapeBenchmark.part1d_polymorph_shapes_for              thrpt    2    7912.852  
 > **Note**
 > - In Mercury dissection pipeline, we were using `Stream` API extensively until finding out that it wastly underperforms when using in a loop.
 
-### Part 2: The naive optimization
+#### Part 2: The naive optimization
 
 When I started Java programming, 
 I was told that the JVM is smart enough to optimize the code.
@@ -165,7 +166,7 @@ ShapeBenchmark.part2b_polymorph_records_for             thrpt    2    7855.549  
 > - Final methods are not faster than virtual methods
 > - The `forEach` method is as fast as the `for` loop
 
-### Part 3: Get rid of polymorphism
+#### Part 3: Get rid of polymorphism
 
 Let's see what happens if we get rid of inheritance. Part 3 has two options:
 The first run will still use the `Shape` interface to access the `area()` method,
@@ -185,7 +186,7 @@ ShapeBenchmark.part3_multipurpose_records               thrpt    2   27061.431  
 > - The performance is 3.5 times faster than the first implementation
 > - The `forEach` method is as fast as the `for` loop
 
-### Part 4: Tweaking ShapeData area calculation
+#### Part 4: Tweaking ShapeData area calculation
 
 Until now, we implemented the area calculation in the `ShapeData` class using
 primary school math formulas. 
@@ -216,7 +217,7 @@ ShapeBenchmark.part4_fast_records                       thrpt    2   92309.375  
 > - The performance is 12 times faster than the first implementation
 > - The performance gain with LUT is huge, 3.5 times faster than without LUT
 
-### Part 5: Data oriented programming
+#### Part 5: Data oriented programming
 
 This is where the real performance gain comes from and 
 also where things get tricky. Java is not very good at data oriented programming.
@@ -248,7 +249,7 @@ ShapeBenchmark.part5b_data_oriented_loop_unrolling      thrpt    2  110922.969  
 > - The loop unrolling is not significantly faster than the simple loop, probably because of the JVM optimizations
 > - The Java code for data oriented programming is not very readable or maintainable
 
-### Part 6: The POJO
+#### Part 6: The POJO
 
 Java folks often say that one must get rid of the getters and setters, and use
 data members directly. This is called a POJO (Plain Old Java Object).
@@ -264,25 +265,62 @@ ShapeBenchmark.part6b_pojo_ctab                         thrpt    2   75543.062  
 > - The performance is 10 times faster than the SOLID implementation
 > - The _multipurpose_ record implementation is still slightly faster
 
-## Conclusion
+### Summary from Java perspective
 
-```text
-ShapeBenchmark.part1a_polymorph_shapes_stream           thrpt    2    7561.284          ops/s
-ShapeBenchmark.part1b_polymorph_shapes_stream_parallel  thrpt    2   10051.631          ops/s
-ShapeBenchmark.part1c_polymorph_shapes_forEach          thrpt    2    7879.182          ops/s
-ShapeBenchmark.part1d_polymorph_shapes_for_it           thrpt    2    7854.584          ops/s
-ShapeBenchmark.part2_polymorph_records_for_each         thrpt    2    7926.638          ops/s
-ShapeBenchmark.part2b_polymorph_records_for             thrpt    2    7855.549          ops/s
-ShapeBenchmark.part3_multipurpose_records               thrpt    2   27061.431          ops/s
-ShapeBenchmark.part4_fast_records                       thrpt    2   92309.375          ops/s
-ShapeBenchmark.part5a_data_oriented                     thrpt    2  109700.005          ops/s
-ShapeBenchmark.part5b_data_oriented_loop_unrolling      thrpt    2  110922.969          ops/s
-ShapeBenchmark.part6a_pojo                              thrpt    2   77346.612          ops/s
-ShapeBenchmark.part6b_pojo_ctab                         thrpt    2   75543.062          ops/s
-```
+| Function Name                                      | Ops/s       | Runtime (µs) |
+|----------------------------------------------------|-------------|--------------|
+| part1a_polymorph_shapes_stream                     |   7561.284  | 132.26       |
+| part1b_polymorph_shapes_stream_parallel            |  10051.631  |  99.49       |
+| part1c_polymorph_shapes_forEach                    |   7879.182  | 126.92       |
+| part1d_polymorph_shapes_for_it                     |   7854.584  | 127.32       |
+| part2_polymorph_records_for_each                   |   7926.638  | 126.15       |
+| part2b_polymorph_records_for                       |   7855.549  | 127.31       |
+| part3_multipurpose_records                         |  27061.431  |  36.96       |
+| part4_fast_records                                 |  92309.375  |  10.83       |
+| part5a_data_oriented                               | 109700.005  |   9.12       |
+| part5b_data_oriented_loop_unrolling                | 110922.969  |   9.02       |
+| part6a_pojo                                        |  77346.612  |  12.93       |
+| part6b_pojo_ctab                                   |  75543.062  |  13.24       |
 
 1. One should not blindly follow the rules from the Clean Code book
 2. Sometimes, breaking the rules can lead to better performance
 3. Don't overrate the JVM optimizations
 4. Don't rely on obsolete assumptions about Java performance
 5. Clean Code has right about one thing for sure: using IF/SWITCH statements should be avoided, but the answer is not polymorphism, but rather clever programming
+
+## The Rust version
+
+The big question is how fast is Rust or how slow is Java today?
+
+Tl;dr; we can reach the same performance in Java and Rust, but in Java we have to sacrifice readibility and
+maintainability. 
+
+### Summarizing the Rust version
+
+| Function Name                    | Ops/s      | Runtime (µs) | 
+|----------------------------------|------------|--------------|
+| solid_shapes_total_area          |  18388     | 54.380       |
+| boxed_shapes_total_area          |  31510     | 31.735       |
+| doo_shapes_total_area            |  65948     | 15.160       |
+| boxed_coeff_shapes_total_area    | 111969     |  8.9310      |
+| doo_coeff_shapes_total_area      | 112742     |  8.8703      |
+| doo_coeff_shapes_total_area_fast | 115579     |  8.6951      |
+
+1. Intrestingly, the boxed version of the coeff/LUT implementation is almost as fast as the sequential one
+2. What makes it more strange that the other implementation using switches in area() calc is twice as slow when using boxed records
+3. Unrolling the total area calculation does not result in notable performance gain
+
+## Final conclusion
+
+| Description                                                   | Ops/s in Rust                          | Ops/s in Java                              | 
+|---------------------------------------------------------------|----------------------------------------|--------------------------------------------|
+| Clean code with polymorph classes, following SOLID principles |  18388 (solid_shapes_total_area)       |  7879 (part1c_polymorph_shapes_forEach)    |
+| Sequence of boxed records, using switch in area()             |  31510 (boxed_shapes_total_area)       | 27061 (part3_multipurpose_records)         |
+| Sequence of records, using switch in area()                   |  65948 (doo_shapes_total_area)         | n/a                                        |
+| Using LUT and common formula instead of switch, boxed records | 111969 (boxed_coeff_shapes_total_area) | 92309 (part4_fast_records)                 |
+
+
+1. The polymorph, SOLID Rust version is twice as fast as the Java version
+2. Using "multipurpose" records in Java produced comparable, but twice as slow runtime as using vector of structs in Rust
+3. The fastest implementation, using data oriented design produces similar runtime in both Java and Rust, the Rust code is more readable though
+4. Java "fast records" produce reasonalably fast, yet readable implementation, reaching 80% of fastest performance achieved in Rust
