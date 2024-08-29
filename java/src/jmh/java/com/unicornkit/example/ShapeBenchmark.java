@@ -4,6 +4,7 @@ import com.unicornkit.example.part1_java_polymorph_objects.PolymorphShapeFactory
 import com.unicornkit.example.part2_polymorph_records.PolymorphRecordShapeFactory;
 import com.unicornkit.example.part3_multipurpose_record.MultipurposeRecordShapeFactory;
 import com.unicornkit.example.part4_records_with_lut.FastRecordShapeFactory;
+import com.unicornkit.example.part5_data_oriented.DataOrientedFastShapes;
 import com.unicornkit.example.part5_data_oriented.DataOrientedShapes;
 import com.unicornkit.example.part6_pojo.PojoShapeList;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -27,6 +28,8 @@ public class ShapeBenchmark {
 
     private static final DataOrientedShapes dataOrientedShapes = new DataOrientedShapes();
 
+    private static final DataOrientedFastShapes dataOrientedFastShapes = new DataOrientedFastShapes();
+
     private static final PojoShapeList pojoShapes = new PojoShapeList();
 
     static {
@@ -36,6 +39,7 @@ public class ShapeBenchmark {
             ShapeListLoader.fromResource("shapes.txt", multipurposeRecords);
             ShapeListLoader.fromResource("shapes.txt", fastRecords);
             ShapeListLoader.fromResource("shapes.txt", dataOrientedShapes);
+            ShapeListLoader.fromResource("shapes.txt", dataOrientedFastShapes);
             ShapeListLoader.fromResource("shapes.txt", pojoShapes);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -119,7 +123,7 @@ public class ShapeBenchmark {
     @Warmup(iterations = 2)
     @Measurement(iterations = 2)
     public void part5a_data_oriented() {
-        var totalArea = dataOrientedShapes.calcTotalArea();
+        var totalArea = dataOrientedFastShapes.calcTotalArea();
     }
 
     @Benchmark
@@ -127,7 +131,15 @@ public class ShapeBenchmark {
     @Warmup(iterations = 2)
     @Measurement(iterations = 2)
     public void part5b_data_oriented_loop_unrolling() {
-        var totalArea = dataOrientedShapes.calcTotalAreaUnroll();
+        var totalArea = dataOrientedFastShapes.calcTotalAreaUnroll();
+    }
+
+    @Benchmark
+    @Fork(value = 1, warmups = 0)
+    @Warmup(iterations = 2)
+    @Measurement(iterations = 2)
+    public void part5c_data_oriented_switches() {
+        var totalArea = dataOrientedShapes.calcTotalArea();
     }
 
     @Benchmark

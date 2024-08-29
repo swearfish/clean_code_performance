@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="26fc5e43-f4c4-47c3-b7bd-78757fc93718" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/rust/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rust/Cargo.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rust/benches/benchmark.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rust/shapes.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rust/src/assert_eq_eps.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rust/src/doo.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rust/src/doo_coeff.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rust/src/factory.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rust/src/lib.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rust/src/solid.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/main/java/com/unicornkit/example/part5_data_oriented/DataOrientedFastShapes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/unicornkit/example/part5_data_oriented/DataOrientedShapes.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/unicornkit/example/part5_data_oriented/DataOrientedShapes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,9 +19,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2kkHsuPpPzlx7fLwDqBOm9s76Ls" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -34,18 +31,30 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/akosnagy/work/trainings/clean_code_performance/java/src/main/java/com/unicornkit/example/part5_data_oriented",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/java/src/main/java/com/unicornkit/example/part5_data_oriented" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
       </set>
     </attachedChunks>
   </component>
@@ -58,6 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1723820864653</updated>
       <workItem from="1723820865741" duration="4000" />
+      <workItem from="1724929209805" duration="1909000" />
     </task>
     <servers />
   </component>
